@@ -1,0 +1,1 @@
+<input type="{{ $type }}" name="{{ $name }}" id="{{ $name }}" value="{{ $value }}" placeholder="{{ $placeholder }}" {{ $attributes->class(['rounded border-0 ring-1 ring-slate-300 focus:ring-2 text-sm placeholder:text-slate-400']) }}>
