@@ -1,7 +1,7 @@
 <x-card {{ $attributes->class(['flex flex-col gap-2']) }}>
     <div class="flex justify-between items-center">
-        <div class="font-semibold text-lg  text-slate-700">{{ $job->title }}</div>
-        <div class="font-semibold ">${{ number_format($job->salary) }} USD</div>
+        <div class="font-semibold text-xl  text-slate-700">{{ $job->title }}</div>
+        <div class="font-semibold text-slate-500">${{ number_format($job->salary) }} USD</div>
     </div>
     <div class="flex justify-between text-sm flex-col md:flex-row gap-2">
         <div class="flex gap-2 items-center">

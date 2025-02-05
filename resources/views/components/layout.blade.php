@@ -22,7 +22,7 @@
 
         <ul class="flex gap-4 items-center text-lg font-semibold">
             @auth
-            <li class="font-normal">Welcome, {{ auth()->user()->name ?? 'Anonymous' }}</li>
+            <li class="font-normal text-sm">Welcome, {{ auth()->user()->name ?? 'Anonymous' }}</li>
             <li>
                 <form action="{{ route('auth.destroy') }}" method="post">
                     @csrf
@@ -46,5 +46,4 @@
     @endif
     {{ $slot }}
 </body>
-
 </html>
