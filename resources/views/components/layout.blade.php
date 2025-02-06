@@ -54,8 +54,9 @@
             <li>
                 @if(URL::current() !== route('auth.create'))
                 <x-link href="{{ route('auth.create') }}" text="Log in" />
-                @endif
+                @else
                 <x-link href="" text="Sign up" />
+                @endif
             </li>
             @endauth
         </ul>
