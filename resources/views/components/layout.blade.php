@@ -10,7 +10,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="container max-w-4xl mx-auto text-slate-700">
+<body class="container max-w-6xl mx-auto text-slate-700">
     <nav class="flex justify-between items-center my-8">
         <ul>
             <li>
@@ -20,20 +20,42 @@
             </li>
         </ul>
 
-        <ul class="flex gap-4 items-center text-lg font-semibold">
+        <ul class="flex gap-4 items-center text-md font-semibold">
             @auth
-            <li class="font-normal text-sm">Welcome, {{ auth()->user()->name ?? 'Anonymous' }}</li>
+            <li class="font-normal text-sm">
+                <a href="{{ route('my-job-application.index') }}">
+                    <div class="flex items-center gap-4">
+                        <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                            <span class="font-medium text-gray-600 dark:text-gray-300">
+                                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}{{ strtoupper(substr(auth()->user()->name, strpos(auth()->user()->name, ' ') + 1, 1) ?? '') }}
+                            </span>
+                        </div>
+                        <div class="font-medium dark:text-white">
+                            <div>{{ auth()->user()->name }}</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">
+                                Joined in {{ \Carbon\Carbon::parse(auth()->user()->created_at)->format('F Y') }}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
             <li>
                 <form action="{{ route('auth.destroy') }}" method="post">
                     @csrf
                     @method('delete')
-                    <button class="hover:underline">Log out</button>
+                    <button class="hover:underline flex items-center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                        </svg>
+                    </button>
                 </form>
-
             </li>
+
             @else
             <li>
+                @if(URL::current() !== route('auth.create'))
                 <x-link href="{{ route('auth.create') }}" text="Log in" />
+                @endif
+                <x-link href="" text="Sign up" />
             </li>
             @endauth
         </ul>

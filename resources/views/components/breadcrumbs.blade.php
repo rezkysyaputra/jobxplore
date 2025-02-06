@@ -1,5 +1,5 @@
 <nav {{ $attributes }}>
-    <ul class="flex gap-2 text-sm items-center ">
+    <ul class="flex gap-2 font-medium text-slate-500 text-sm items-center ">
         <li>
             <a href="/" class="hover:underline">Home</a>
         </li>
