@@ -1,3 +1,3 @@
-<div {{ $attributes->class(['border rounded-lg px-2 py-1 text-xs w-fit']) }}>
-    {{ $slot }}
+<div {{ $attributes->class(['border border-slate-500 rounded-2xl px-2 py-1 text-xs font-medium w-fit  text-slate-500']) }}>
+    {{ ucfirst($slot) }}
 </div>

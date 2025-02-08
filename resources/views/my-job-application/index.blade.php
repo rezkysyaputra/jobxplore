@@ -21,7 +21,9 @@
                     @csrf
                     @method('delete')
 
-                    <x-button text="Cancel" class="bg-red-500 hover:bg-red-600" />
+                    <x-button class="bg-red-500 hover:bg-red-600">
+                        Cancel
+                    </x-button>
                 </form>
             </div>
         </div>

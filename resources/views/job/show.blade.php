@@ -1,12 +1,14 @@
 <x-layout>
     <x-breadcrumbs class="mb-4" :links="['Jobs' => route('jobs.index'), $job->title => '#']" />
     <x-job-card :$job class="mb-6">
-        <div class="text-sm my-4">
+        <div class="text-sm mb-6 mt-4 text-slate-500">
             {!! nl2br(e($job->description)) !!}
         </div>
         <div class="my-4">
             @can('apply', $job)
-            <x-link href="{{ route('job.application.create', $job) }}" text="Apply" class="border border-slate-300 rounded-lg hover:no-underline hover:bg-slate-200 py-2 px-4 font-medium" />
+            <x-link href="{{ route('job.application.create', $job) }}" class="border border-slate-300 rounded-lg hover:no-underline hover:bg-slate-200 py-2 px-4 font-medium">
+                Apply
+            </x-link>
             @else
             @if (auth()->check())
             <div class="flex items-center p-3 w-fit text-sm text-slate-700 border border-slate-300 rounded-lg bg-slate-50 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600" role="alert">
@@ -19,7 +21,9 @@
                 </div>
             </div>
             @else
-            <x-link href="{{ route('login') }}" text="Login to apply" class="border border-slate-300 rounded-lg hover:no-underline hover:bg-slate-200 py-2 px-4 font-medium" />
+            <div class="mt-4 text-center italic text-slate-500">
+                You need to <x-link href="{{ route('login') }}" class="text-indigo-500 font-medium">login</x-link> to apply for this job
+            </div>
             @endif
             @endcan
         </div>

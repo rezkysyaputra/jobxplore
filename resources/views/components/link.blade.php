@@ -1,3 +1,1 @@
-<div>
-    <a {{ $attributes->class(['hover:underline']) }} href="{{ $href }}">{{ $text }}</a>
-</div>
+<a {{ $attributes->class(['hover:underline']) }} href="{{ $href }}">{{ $slot }}</a>

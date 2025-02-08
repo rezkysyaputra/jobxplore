@@ -1,10 +1,10 @@
 <x-card {{ $attributes->class(['flex flex-col gap-2']) }}>
-    <div class="flex justify-between items-center">
-        <div class="font-semibold text-xl  text-slate-700">{{ $job->title }}</div>
-        <div class="font-semibold text-slate-500">${{ number_format($job->salary) }} USD</div>
+    <div class="flex justify-between items-center text-slate-700">
+        <div class="font-semibold text-2xl  ">{{ $job->title }}</div>
+        <div class="font-semibold text-lg">${{ number_format($job->salary) }} USD</div>
     </div>
     <div class="flex justify-between text-sm flex-col md:flex-row gap-2">
-        <div class="flex gap-2 items-center">
+        <div class="flex gap-2 items-center text-slate-500 font-medium">
             <div>{{ $job->employer->company_name }}</div>
             <div class="flex gap-1 items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
