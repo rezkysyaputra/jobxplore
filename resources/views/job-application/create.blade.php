@@ -5,7 +5,7 @@
     <x-job-card class="mb-4" :$job />
     <x-card>
         <div>
-            <h1 class="text-xl font-bold mb-4">Apply for {{ $job->title }}</h1>
+            <h1 class="text-xl font-medium mb-4"> Apply this job</h1>
             <form action="{{ route('job.application.store', $job) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-4">
@@ -18,7 +18,7 @@
                     <x-text-input type="file" name="cv" />
                 </div>
 
-                <x-button class="w-full">
+                <x-button>
                     Apply
                 </x-button>
             </form>

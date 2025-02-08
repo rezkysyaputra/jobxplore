@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\Employer;
 use App\Models\JobApplication;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 
-class MyJobController extends Controller
+class MyJobApplicationController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('my-job.index');
+        $applications = auth()->user()
+            ->jobApplications()
+            ->with(['job' => fn($query)=> $query->withCount('jobApplications')
+            ->withAvg('jobApplications', 'expected_salary')],'job.employer')
+            ->latest()
+            ->get();
+        return view('my-job-application.index', compact('applications'));
     }
 
     /**
@@ -60,7 +64,11 @@ class MyJobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(JobApplication $myJobApplication)
     {
+        $myJobApplication->delete();
+
+        return redirect()->back()
+            ->with('success', 'Application deleted successfully');
     }
 }

@@ -22,6 +22,11 @@
 
         <ul class="flex gap-4 items-center text-md font-semibold">
             @auth
+            <li>
+                <x-link href="{{ route('my-jobs.index') }}">
+                    My Jobs
+                </x-link>
+            </li>
             <li class="font-normal text-sm">
                 <a href="{{ route('my-job-application.index') }}">
                     <div class="flex items-center gap-4">
@@ -49,7 +54,6 @@
                     </button>
                 </form>
             </li>
-
             @else
             <li class="text-lg">
                 @if(URL::current() !== route('auth.create'))

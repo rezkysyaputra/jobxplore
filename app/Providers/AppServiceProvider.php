@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Employer;
 use App\Models\Job;
 use App\Models\JobApplication;
+use App\Policies\EmployerPolicy;
 use App\Policies\JobPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -23,7 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::policy(Job::class, JobPolicy::class);
-        Gate::policy(JobApplication::class, JobPolicy::class);
+        Gate::policy(JobApplication::class, policy: JobPolicy::class);
+        // Gate::policy(Job::class, JobPolicy::class);
+        // Gate::policy(Employer::class, EmployerPolicy::class);
     }
 }
+
