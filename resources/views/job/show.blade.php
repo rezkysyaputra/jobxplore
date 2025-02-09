@@ -1,8 +1,8 @@
 <x-layout>
     <x-breadcrumbs class="mb-4" :links="['Jobs' => route('jobs.index'), $job->title => '#']" />
     <x-job-card :$job class="mb-6">
-        <div class="text-sm mb-6 mt-4 text-slate-500">
-            {!! nl2br(e($job->description)) !!}
+        <div class="prose max-w-none">
+            {!! $job->description !!}
         </div>
         <div class="my-4">
             @can('apply', $job)

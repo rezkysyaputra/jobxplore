@@ -22,7 +22,7 @@ class JobController extends Controller
             'category'
         ]);
 
-        $jobs = Job::with('employer')->filter($filters)->paginate();
+        $jobs = Job::with('employer')->latest()->filter($filters)->paginate();
 
         return view('job.index', ['jobs' => $jobs]);
     }
