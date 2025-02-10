@@ -23,8 +23,18 @@
             <div class="mb-4">No Applicants!</div>
             @endforelse
 
-            <div class="flex">
-                <a href="{{ route('my-jobs.edit', $job) }}" class="border py-2 px-4 rounded-lg border-slate-300 hover:no-underline hover:bg-slate-200 font-medium">Edit</a>
+            <div class="flex gap-2">
+                @if(!$job->deleted_at)
+                <a href="{{ route('my-jobs.edit', $job) }}" class="border py-1.5 px-2.5 rounded-lg border-slate-300 hover:no-underline hover:bg-slate-200 font-medium">Edit</a>
+                <form action="{{ route('my-jobs.destroy', $job) }}" method="post">
+                    @csrf
+                    @method('delete')
+
+                    <x-button class="bg-red-500 hover:bg-red-600">Delete</x-button>
+                </form>
+                @else
+                <a href="#" class="border py-1.5 px-2.5 rounded-lg border-slate-300 hover:no-underline hover:bg-slate-200 font-medium">Restored</a>
+                @endif
             </div>
         </div>
     </x-job-card>
