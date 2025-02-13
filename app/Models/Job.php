@@ -9,6 +9,7 @@ use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Str;
 
 class Job extends Model
 {
@@ -17,6 +18,7 @@ class Job extends Model
 
     protected $fillable = [
         'title',
+        'slug',
         'description',
         'location',
         'salary',
@@ -44,6 +46,17 @@ class Job extends Model
         'Finance',
         'Digital Marketing',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = Str::slug($value) . '-' . Str::random(6);
+    }
 
     public function employer()
     {

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\Employer;
 use App\Http\Requests\JobRequest;
 use App\Models\Job;
+use App\Models\JobApplication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Storage;
 
 class MyJobController extends Controller
 {

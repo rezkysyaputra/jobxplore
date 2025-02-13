@@ -24,7 +24,6 @@
 
      <ul class="flex gap-4 items-center text-md font-semibold">
          @auth
-
          <li class="relative" x-data="{ open: false }">
              <button type="button" @click="open = !open" class="flex text-sm  rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                  <span class="sr-only">Open user menu</span>
@@ -53,16 +52,14 @@
              </div>
          </li>
          @else
-         <li class="text-lg">
-             @if(URL::current() !== route('auth.create'))
+         <li class="flex gap-2 text-lg">
              <x-link href="{{ route('auth.create') }}">
-                 Log in
+                 Sign in
              </x-link>
-             @else
-             <x-link href="">
+             <span>/</span>
+             <x-link :href="route('register.create')">
                  Sign up
              </x-link>
-             @endif
          </li>
          @endauth
      </ul>

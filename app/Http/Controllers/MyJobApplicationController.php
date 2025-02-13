@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\JobApplication;
-use Illuminate\Http\Request;
 
 class MyJobApplicationController extends Controller
 {
@@ -19,6 +18,9 @@ class MyJobApplicationController extends Controller
                     ->withAvg('jobApplications', 'expected_salary')
                     ->withTrashed()
             ], 'job.employer')
+            ->whereHas('job', function ($query) {
+                $query->withTrashed();
+            })
             ->latest()
             ->get();
         return view('my-job-application.index', compact('applications'));

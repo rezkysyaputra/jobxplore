@@ -80,4 +80,9 @@ class JobPolicy
     {
         return !$job->hasUserApplied($user);
     }
+
+    public function isOwner(User $user, Job $job): bool
+    {
+        return $user->id !== $job->employer->user_id;
+    }
 }

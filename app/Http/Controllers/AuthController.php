@@ -26,7 +26,7 @@ class AuthController extends Controller
             return redirect()->intended('/');
         } else {
             return redirect()->back()
-                ->with('error', 'Email or password invalid');
+                ->with('error', 'The provided credentials do not match our records.');
         }
     }
 

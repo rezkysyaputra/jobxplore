@@ -6,12 +6,23 @@
         </div>
         <div class="my-4">
             @can('apply', $job)
+            @can('isOwner', $job)
             <div class="flex">
                 <x-link href="{{ route('job.application.create', $job) }}" class="border border-slate-300 rounded-lg hover:no-underline hover:bg-slate-200 py-2 px-4 font-medium">
                     Apply
                 </x-link>
-
             </div>
+            @else
+            <div class="flex items-center p-3 w-fit text-sm text-slate-700 border border-slate-300 rounded-lg bg-slate-50 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600" role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                </svg>
+                <span class="sr-only">Info</span>
+                <div class="font-medium">
+                    You are the owner of this job.
+                </div>
+            </div>
+            @endcan
             @else
             @if (auth()->check())
             <div class="flex items-center p-3 w-fit text-sm text-slate-700 border border-slate-300 rounded-lg bg-slate-50 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600" role="alert">
